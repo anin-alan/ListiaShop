@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="id" style="scroll-behavior: smooth;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - ListiaShop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .animate-bounce {
+            animation: bounce ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .animate-spin {
+            animation: spin 1s linear infinite;
+        }
+
+        #success-animation.fade-in {
+            opacity: 1;
+        }
+
+        #success-animation {
+            opacity: 0;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+    <div class="max-w-4xl mx-auto p-6">
+        <h1 class="text-3xl font-bold text-indigo-600 mb-6">Checkout</h1>
+
+        <!-- Detail Pesanan -->
+        <div class="bg-white p-6 rounded-lg shadow mb-6">
+            <h2 class="text-xl font-semibold mb-4">Detail Pesanan</h2>
+            <div id="order-detail"></div>
+        </div>
+
+        <!-- Form Info Pengiriman -->
+        <div class="bg-white p-6 rounded-lg shadow mb-6">
+            <h2 class="text-xl font-semibold mb-4">Informasi Pengiriman</h2>
+            <form id="shipping-form" class="space-y-4">
+                <input type="text" id="nama" placeholder="Nama Lengkap"
+                    class="w-full border border-gray-300 p-2 rounded" required>
+                <input type="tel" id="hp" placeholder="Nomor HP" class="w-full border border-gray-300 p-2 rounded"
+                    required>
+                <textarea id="alamat" placeholder="Alamat Lengkap" class="w-full border border-gray-300 p-2 rounded"
+                    rows="3" required></textarea>
+            </form>
+        </div>
+
+        <!-- Ringkasan Belanja -->
+        <div class="bg-white p-6 rounded-lg shadow mb-6">
+            <h2 class="text-xl font-semibold mb-4">Ringkasan Belanja</h2>
+            <div id="cart-summary"></div>
+            <div class="mt-4">
+                <label for="shipping" class="block font-medium mb-1">Pilih Ekspedisi</label>
+                <select id="shipping" class="w-full border border-gray-300 p-2 rounded">
+                    <option value="15000" data-label="JNE">JNE - Rp 15.000</option>
+                    <option value="12000" data-label="JNT">JNT - Rp 12.000</option>
+                    <option value="10000" data-label="POS">POS Indonesia - Rp 10.000</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Metode Pembayaran -->
+        <div class="bg-white p-6 rounded-lg shadow mb-6">
+            <h2 class="text-xl font-semibold mb-4">Metode Pembayaran</h2>
+            <div class="space-y-3">
+                <label class="block">
+                    <input type="radio" name="payment" value="COD" class="mr-2"> Bayar di Tempat (COD)
+                </label>
+                <label class="block">
+                    <input type="radio" name="payment" value="TRANSFER" class="mr-2"> Transfer Bank
+                </label>
+            </div>
+
+            <div id="bank-info" class="mt-4 hidden">
+                <label for="bank-select" class="block mb-2 font-medium">Pilih Bank</label>
+                <select id="bank-select" class="w-full border border-gray-300 p-2 rounded">
+                    <option value="">-- Pilih Bank --</option>
+                    <option value="BCA">BCA</option>
+                    <option value="BNI">BNI</option>
+                    <option value="BRI">BRI</option>
+                    <option value="BSI">BSI</option>
+                    <option value="BANK_KALSEL">Bank Kalsel</option>
+                </select>
+
+                <div id="bank-details" class="mt-4 hidden">
+                    <img id="bank-logo" src="" alt="Logo Bank" class="h-10 mb-2">
+                    <p id="bank-account" class="text-gray-700"></p>
+                </div>
+
+                <div class="mt-3">
+                    <label class="block mb-1 font-medium">Upload Bukti Transfer</label>
+                    <input type="file" id="buktiTransfer" class="border p-2 rounded w-full">
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Belanja -->
+        <div class="bg-white p-6 rounded-lg shadow">
+            <div class="flex justify-between text-lg font-semibold">
+                <span>Total Belanja:</span>
+                <span id="final-total">Rp 0</span>
+            </div>
+            <button
+                class="mt-6 w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-lg font-semibold transition">Bayar
+                Sekarang</button>
+        </div>
+    </div>
+
+    <script>
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const orderDetail = document.getElementById('order-detail');
+        const cartSummary = document.getElementById('cart-summary');
+        const finalTotal = document.getElementById('final-total');
+        const shippingSelect = document.getElementById('shipping');
+
+        const bankInfo = document.getElementById('bank-info');
+        const bankSelect = document.getElementById('bank-select');
+        const bankDetails = document.getElementById('bank-details');
+        const bankLogo = document.getElementById('bank-logo');
+        const bankAccount = document.getElementById('bank-account');
+
+        const bankData = {
+            BCA: {
+                logo: 'https://i.ibb.co/Dntdcgd/bca.png',
+                account: '1234567890 a.n. ListiaShop BCA'
+            },
+            BNI: {
+                logo: 'https://i.ibb.co/HpH0d3rq/bni.png',
+                account: '1234567891 a.n. ListiaShop BNI'
+            },
+            BRI: {
+                logo: 'https://i.ibb.co/kN8qnnG/bri.png',
+                account: '1234567892 a.n. ListiaShop BRI'
+            },
+            BSI: {
+                logo: 'https://i.ibb.co/5gDVVhJV/bsi.jpg',
+                account: '1234567893 a.n. ListiaShop BSI'
+            },
+            BANK_KALSEL: {
+                logo: 'https://i.ibb.co/1tfQXMsp/kalsel.jpg',
+                account: '1234567894 a.n. ListiaShop Bank Kalsel'
+            }
+        };
+
+        document.querySelectorAll('input[name="payment"]').forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                if (e.target.value === 'TRANSFER') {
+                    bankInfo.classList.remove('hidden');
+                } else {
+                    bankInfo.classList.add('hidden');
+                    bankDetails.classList.add('hidden');
+                }
+            });
+        });
+
+        bankSelect.addEventListener('change', (e) => {
+            const selected = e.target.value;
+            if (bankData[selected]) {
+                bankDetails.classList.remove('hidden');
+                bankLogo.src = bankData[selected].logo;
+                bankAccount.textContent = `Nomor Rekening: ${bankData[selected].account}`;
+            } else {
+                bankDetails.classList.add('hidden');
+            }
+        });
+
+        function renderCart() {
+            let html = '';
+            let orderHtml = '';
+            let subtotal = 0;
+
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
+
+                html += `
+                    <div class="flex justify-between border-b py-2">
+                        <div>
+                            <div class="font-medium">${item.name}</div>
+                            <div class="text-sm text-gray-500">${item.quantity} x Rp ${item.price.toLocaleString('id-ID')}</div>
+                        </div>
+                        <div>Rp ${itemTotal.toLocaleString('id-ID')}</div>
+                    </div>
+                `;
+
+                orderHtml += `
+                    <div class="flex justify-between py-2">
+                        <span>${item.name} (${item.quantity}x)</span>
+                        <span>Rp ${(item.price * item.quantity).toLocaleString('id-ID')}</span>
+                    </div>
+                `;
+            });
+
+            cartSummary.innerHTML = html;
+            orderDetail.innerHTML = orderHtml;
+            updateTotal(subtotal);
+        }
+
+        function updateTotal(subtotal) {
+            const shippingCost = parseInt(shippingSelect.value);
+            const total = subtotal + shippingCost;
+            finalTotal.textContent = `Rp ${total.toLocaleString('id-ID')}`;
+        }
+
+        shippingSelect.addEventListener('change', () => {
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            updateTotal(subtotal);
+        });
+
+        renderCart();
+
+        document.querySelector('button').addEventListener('click', () => {
+            const selectedPayment = document.querySelector('input[name="payment"]:checked');
+            const buktiTransferInput = document.getElementById('buktiTransfer');
+            const nama = document.getElementById('nama').value.trim();
+            const hp = document.getElementById('hp').value.trim();
+            const alamat = document.getElementById('alamat').value.trim();
+
+            if (!nama || !hp || !alamat) {
+                alert('Lengkapi semua informasi pengiriman.');
+                return;
+            }
+
+            if (!selectedPayment) {
+                alert('Silakan pilih metode pembayaran.');
+                return;
+            }
+
+            if (selectedPayment.value === 'TRANSFER') {
+                if (!buktiTransferInput || buktiTransferInput.files.length === 0) {
+                    alert('Harap unggah bukti transfer sebelum melanjutkan pembayaran.');
+                    return;
+                }
+            }
+
+            // Tampilkan overlay
+            const overlay = document.getElementById('success-animation');
+            const checkBox = document.getElementById('checkmark-box');
+            const spinner = document.getElementById('spinner');
+            const checkIcon = document.getElementById('check-icon');
+
+            overlay.classList.remove('hidden');
+            setTimeout(() => {
+                overlay.classList.add('fade-in');
+                checkBox.classList.add('opacity-100', 'scale-100');  // 🔥 Tambahkan baris ini!
+            }, 50);
+
+            // Spinner 1.5 detik
+            setTimeout(() => {
+                spinner.classList.add('hidden');
+                checkIcon.classList.remove('hidden');
+                checkBox.classList.add('animate-bounce'); // bounce lingkaran putih
+
+                // Setelah 1 detik bounce
+                setTimeout(() => {
+                    checkBox.classList.remove('animate-bounce'); // hentikan bounce
+
+                    // 1 detik kemudian redirect
+                    setTimeout(() => {
+                        window.location.href = 'sukses.html';
+                    }, 1000);
+
+                }, 1000);
+
+            }, 1500);
+
+        });
+
+
+    </script>
+
+    <!-- Overlay animasi loading + centang -->
+    <div id="success-animation"
+        class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50 transition-opacity duration-500">
+
+        <div id="checkmark-box"
+            class="bg-white p-8 rounded-full shadow-lg scale-90 opacity-0 transition-transform transform duration-500 ease-out">
+
+            <!-- Spinner -->
+            <svg id="spinner" class="w-16 h-16 text-indigo-500 animate-spin" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
+            </svg>
+
+            <!-- Centang -->
+            <svg id="check-icon" class="w-20 h-20 text-green-500 hidden" fill="none" stroke="currentColor"
+                stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+        </div>
+    </div>
+
+    <div id="bank-info-container" style="padding: 20px; font-family: Arial, sans-serif;"></div>
+
+
+</body>
+
+</html>
