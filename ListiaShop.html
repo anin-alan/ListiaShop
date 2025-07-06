@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior: smooth;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ListiaShop - Toko Online Sederhana</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles */
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .cart-badge {
+            top: -10px;
+            right: -10px;
+        }
+
+        .mobile-menu {
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 640px) {
+            .product-grid {
+                grid-template-columns: repeat(1, minmax(0, 1fr));
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/3785892a-c275-417f-9204-e341f0fa52dc.png"
+                    alt="ListiaShop Logo" class="h-8 w-8 mr-2">
+                <h1 class="text-2xl font-bold text-indigo-600">ListiaShop</h1>
+            </div>
+
+            <nav class="hidden md:flex space-x-8">
+                <a href="#"
+                    class="text-gray-700 hover:text-indigo-600 transition duration-300 transform hover:scale-105">Beranda</a>
+                <a href="#products"
+                    class="text-gray-700 hover:text-indigo-600 transition duration-300 transform hover:scale-105">Produk</a>
+                <a href="#footer"
+                    class="text-gray-700 hover:text-indigo-600 transition duration-300 transform hover:scale-105">Tentang
+                    Kami</a>
+            </nav>
+
+            <div class="flex items-center space-x-4">
+                <button id="cart-btn"
+                    class="relative transform hover:scale-110 transition duration-300 active:scale-95">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    </svg>
+                    <span id="cart-count"
+                        class="cart-badge absolute bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+                </button>
+
+                <button id="mobile-menu-btn"
+                    class="md:hidden transform hover:scale-110 transition duration-300 active:scale-95">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu hidden md:hidden bg-white border-t border-gray-200">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+                <a href="#"
+                    class="text-gray-700 hover:text-indigo-600 px-4 py-2 rounded-lg hover:bg-indigo-50 transition duration-300">Beranda</a>
+                <a href="#products"
+                    class="text-gray-700 hover:text-indigo-600 px-4 py-2 rounded-lg hover:bg-indigo-50 transition duration-300">Produk</a>
+                <a href="#footer"
+                    class="text-gray-700 hover:text-indigo-600 px-4 py-2 rounded-lg hover:bg-indigo-50 transition duration-300">Tentang
+                    Kami</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-indigo-500 to-purple-600 text-white py-16">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Selamat Datang di ListiaShop</h2>
+                    <p class="text-lg mb-6">Toko online sederhana untuk kebutuhan fashion sehari-hari.</p>
+                    <a href="#products"
+                        class="bg-white text-indigo-600 px-6 py-2 rounded-lg font-semibold inline-block hover:bg-gray-100 transition transform hover:scale-105 active:scale-95">Lihat
+                        Produk</a>
+                </div>
+                <div class="md:w-1/2">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/ebaa53c1-dca8-4ae1-b2a1-a5d4c5b1e001.png"
+                        alt="Stylish display shelf showing various clothing items and accessories in a modern boutique setting"
+                        class="rounded-lg shadow-xl w-full" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Produk Kami</h2>
+
+            <div class="product-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Baju -->
+                <div class="product-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
+                    <div class="p-4">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/618f2727-2768-4990-b6b7-2d1cd8799159.png"
+                            alt="Modern casual shirt with minimalist design in neutral colors, hanging on a wooden hanger"
+                            class="w-full h-48 object-cover rounded-lg mb-4" />
+                        <h3 class="text-xl font-semibold mb-2">Kaos Casual Modern</h3>
+                        <p class="text-gray-600 mb-4">Kaos dengan bahan nyaman dan desain minimalis untuk gaya
+                            sehari-hari.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-lg font-bold text-indigo-600">Rp 150.000</span>
+                            <button
+                                class="add-to-cart bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition"
+                                data-id="1" data-name="Kaos Casual Modern" data-price="150000">
+                                + Keranjang
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sandal -->
+                <div class="product-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
+                    <div class="p-4">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/da56e742-268e-417a-8dbd-4eeaa0dbe29a.png"
+                            alt="Sendal kulit pria premium warna hitam dan coklat dengan desain modern"
+                            class="w-full h-48 object-cover rounded-lg mb-4" />
+                        <h3 class="text-xl font-semibold mb-2">Sandal Kulit Elegan</h3>
+                        <p class="text-gray-600 mb-4">Sandal kulit premium dengan desain yang nyaman dan stylish.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-lg font-bold text-indigo-600">Rp 250.000</span>
+                            <button
+                                class="add-to-cart bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition"
+                                data-id="2" data-name="Sandal Kulit Elegan" data-price="250000">
+                                + Keranjang
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sepatu -->
+                <div class="product-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
+                    <div class="p-4">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/124f8d64-3043-47de-925a-0d8523a796c8.png"
+                            alt="Trendy sneakers with white and pastel colors on a reflective background"
+                            class="w-full h-48 object-cover rounded-lg mb-4" />
+                        <h3 class="text-xl font-semibold mb-2">Sepatu Sneakers Trendi</h3>
+                        <p class="text-gray-600 mb-4">Sepatu kasual dengan desain modern untuk gaya urban.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-lg font-bold text-indigo-600">Rp 350.000</span>
+                            <button
+                                class="add-to-cart bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition"
+                                data-id="3" data-name="Sepatu Sneakers Trendi" data-price="350000">
+                                + Keranjang
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/374b4148-2cf9-49ce-893c-d83280990df4.png"
+                        alt="Interior of trendy clothing store with stylish display racks and natural lighting"
+                        class="rounded-lg shadow-xl w-full" />
+                </div>
+                <div class="md:w-1/2 md:pl-12">
+                    <h2 class="text-3xl font-bold mb-6 text-gray-800">Tentang ListiaShop</h2>
+                    <p class="text-gray-700 mb-4">ListiaShop adalah toko online sederhana yang menyediakan produk
+                        fashion berkualitas dengan harga terjangkau. Kami berkomitmen untuk memberikan pengalaman
+                        belanja yang mudah dan menyenangkan.</p>
+                    <p class="text-gray-700 mb-4">Produk kami dipilih dengan hati-hati untuk memenuhi kebutuhan fashion
+                        sehari-hari. Kami percaya bahwa fashion yang baik tidak harus mahal.</p>
+                    <p class="text-gray-700">Untuk informasi lebih lanjut, silakan hubungi kami melalui email di
+                        info@listiashop.com</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-50 z-20 hidden">
+        <div class="absolute right-0 top-0 h-full w-full md:w-1/2 lg:w-1/3 bg-white shadow-lg overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-bold">Keranjang Belanja</h3>
+                    <button id="close-cart" class="text-gray-500 hover:text-gray-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+
+                <div id="cart-items" class="mb-6">
+                    <!-- Cart items will be added here dynamically -->
+                    <p id="empty-cart-message" class="text-gray-500 text-center py-8">Keranjang Anda masih kosong</p>
+                </div>
+
+                <div class="border-t border-gray-200 pt-4">
+                    <div class="flex justify-between mb-4">
+                        <span class="font-semibold">Total:</span>
+                        <span id="cart-total" class="font-bold text-indigo-600">Rp 0</span>
+                    </div>
+                    <button id="checkout-btn"
+                        class="w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
+                        disabled>
+                        Proses Checkout (Demo)
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer" class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-xl font-bold mb-4">ListiaShop</h3>
+                    <p class="text-gray-400">Toko online sederhana untuk kebutuhan fashion sehari-hari.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Hubungi Kami</h4>
+                    <p class="text-gray-400">Email: info@listiashop.com</p>
+                    <p class="text-gray-400">Telepon: (021) 12345678</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
+                <p>© 2025 ListiaShop. Semua hak dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Cart functionality
+        const cartBtn = document.getElementById('cart-btn');
+        const cartModal = document.getElementById('cart-modal');
+        const closeCart = document.getElementById('close-cart');
+        const cartItemsContainer = document.getElementById('cart-items');
+        const emptyCartMessage = document.getElementById('empty-cart-message');
+        const cartCount = document.getElementById('cart-count');
+        const cartTotal = document.getElementById('cart-total');
+        const checkoutBtn = document.getElementById('checkout-btn');
+
+        let cart = [];
+
+        // Toggle cart modal
+        cartBtn.addEventListener('click', () => {
+            cartModal.classList.remove('hidden');
+        });
+
+        closeCart.addEventListener('click', () => {
+            cartModal.classList.add('hidden');
+        });
+
+        // Add to cart functionality
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', () => {
+                const id = button.dataset.id;
+                const name = button.dataset.name;
+                const price = parseInt(button.dataset.price);
+
+                // Check if item already in cart
+                const existingItemIndex = cart.findIndex(item => item.id === id);
+
+                if (existingItemIndex !== -1) {
+                    // Item already in cart, increase quantity
+                    cart[existingItemIndex].quantity++;
+                } else {
+                    // Add new item to cart
+                    cart.push({
+                        id,
+                        name,
+                        price,
+                        quantity: 1
+                    });
+                }
+
+                updateCart();
+
+                // Show modal when adding first item
+                if (cart.length === 1) {
+                    cartModal.classList.remove('hidden');
+                }
+            });
+        });
+
+        // Update cart display
+        function updateCart() {
+            // Update cart count
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCount.textContent = totalItems;
+
+            // Update cart items list
+            cartItemsContainer.innerHTML = '';
+
+            if (cart.length === 0) {
+                emptyCartMessage.classList.remove('hidden');
+                checkoutBtn.disabled = true;
+            } else {
+                emptyCartMessage.classList.add('hidden');
+                checkoutBtn.disabled = false;
+
+                cart.forEach(item => {
+                    const itemElement = document.createElement('div');
+                    itemElement.className = 'flex justify-between items-center mb-4 pb-4 border-b border-gray-200';
+                    itemElement.innerHTML = `
+                        <div>
+                            <h4 class="font-semibold">${item.name}</h4>
+                            <p class="text-sm text-gray-500">Rp ${item.price.toLocaleString('id-ID')}</p>
+                        </div>
+                        <div class="flex items-center">
+                            <button class="decrease-quantity w-8 h-8 flex items-center justify-center border border-gray-300 rounded-l-md" data-id="${item.id}">
+                                -
+                            </button>
+                            <span class="quantity w-8 h-8 flex items-center justify-center border-t border-b border-gray-300">
+                                ${item.quantity}
+                            </span>
+                            <button class="increase-quantity w-8 h-8 flex items-center justify-center border border-gray-300 rounded-r-md" data-id="${item.id}">
+                                +
+                            </button>
+                            <button class="remove-item ml-4 text-red-500 hover:text-red-700" data-id="${item.id}">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                </svg>
+                            </button>
+                        </div>
+                    `;
+                    cartItemsContainer.appendChild(itemElement);
+                });
+
+                // Add event listeners for the new buttons
+                document.querySelectorAll('.decrease-quantity').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        const id = e.target.dataset.id;
+                        const itemIndex = cart.findIndex(item => item.id === id);
+
+                        if (cart[itemIndex].quantity > 1) {
+                            cart[itemIndex].quantity--;
+                        } else {
+                            cart = cart.filter(item => item.id !== id);
+                        }
+
+                        updateCart();
+                    });
+                });
+
+                document.querySelectorAll('.increase-quantity').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        const id = e.target.dataset.id;
+                        const itemIndex = cart.findIndex(item => item.id === id);
+                        cart[itemIndex].quantity++;
+                        updateCart();
+                    });
+                });
+
+                document.querySelectorAll('.remove-item').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        const id = e.target.dataset.id;
+                        cart = cart.filter(item => item.id !== id);
+                        updateCart();
+                    });
+                });
+            }
+
+            // Update cart total
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            cartTotal.textContent = `Rp ${total.toLocaleString('id-ID')}`;
+        }
+
+        // Checkout button (simpan cart ke localStorage dan redirect ke checkout)
+        checkoutBtn.addEventListener('click', () => {
+            localStorage.setItem('cart', JSON.stringify(cart));
+            window.location.href = 'check-out.html';
+        });
+
+    </script>
+</body>
+
+</html>
