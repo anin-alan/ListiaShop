@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" style="scroll-behavior: smooth;">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,10 +12,12 @@
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
+
         .cart-badge {
             top: -10px;
             right: -10px;
         }
+
         .mobile-menu {
             transition: all 0.3s ease;
         }
@@ -32,9 +35,8 @@
     <header class="bg-white shadow-sm sticky top-0 z-10">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex items-center">
-                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/3785892a-c275-417f-9204-e341f0fa52dc.png"
-                    alt="ListiaShop Logo" class="h-8 w-8 mr-2">
-                <h1 class="text-2xl font-bold text-indigo-600">ListiaShop</h1>
+                <img src="img\logo sepatu.png" alt="ListiaShop Logo" class="h-8 w-8 mr-2">
+                <h1 class="text-2xl font-bold text-black">LISTIASHOP</h1>
             </div>
 
             <nav class="hidden md:flex space-x-8">
@@ -46,6 +48,7 @@
                     class="text-gray-700 hover:text-indigo-600 transition duration-300 transform hover:scale-105">Tentang
                     Kami</a>
             </nav>
+
             <div class="flex items-center space-x-4">
                 <button id="cart-btn"
                     class="relative transform hover:scale-110 transition duration-300 active:scale-95">
@@ -95,9 +98,7 @@
                         Produk</a>
                 </div>
                 <div class="md:w-1/2">
-                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/ebaa53c1-dca8-4ae1-b2a1-a5d4c5b1e001.png"
-                        alt="Stylish display shelf showing various clothing items and accessories in a modern boutique setting"
-                        class="rounded-lg shadow-xl w-full" />
+                    <img src="img\model.png" alt="model" class="rounded-lg shadow-xl w-full" />
                 </div>
             </div>
         </div>
@@ -107,47 +108,100 @@
     <section id="products" class="py-12 bg-white">
         <div class="container mx-auto px-4">
             <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Produk Kami</h2>
-
+            <!-- Baju -->
+            <h3 class="text-2xl font-semibold text-gray-700 mb-4 pl-[35px]">Baju</h3>
             <div class="product-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Baju -->
+                <!-- Kemeja Pria Casual -->
                 <div class="product-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
                     <div class="p-4">
-                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/618f2727-2768-4990-b6b7-2d1cd8799159.png"
-                            alt="Modern casual shirt with minimalist design in neutral colors, hanging on a wooden hanger"
+                        <img src="img\kemeja pria.png" alt="Kemeja pria lengan panjang warna netral"
                             class="w-full h-48 object-cover rounded-lg mb-4" />
-                        <h3 class="text-xl font-semibold mb-2">Kaos Casual Modern</h3>
-                        <p class="text-gray-600 mb-4">Kaos dengan bahan nyaman dan desain minimalis untuk gaya
-                            sehari-hari.</p>
+                        <h3 class="text-xl font-semibold mb-2">Kemeja Pria Casual</h3>
+                        <p class="text-gray-600 mb-4">Gaya santai namun tetap stylish untuk pria aktif.</p>
                         <div class="flex justify-between items-center">
-                            <span class="text-lg font-bold text-indigo-600">Rp 150.000</span>
+                            <span class="text-lg font-bold text-indigo-600">Rp 199.000</span>
                             <button
                                 class="add-to-cart bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition"
-                                data-id="1" data-name="Kaos Casual Modern" data-price="150000">
+                                data-id="3" data-name="Kemeja Pria Casual" data-price="199000">
                                 + Keranjang
                             </button>
                         </div>
                     </div>
                 </div>
-
-                <!-- Sandal -->
+                <!-- Blouse Wanita Formal -->
+                <div class="product-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
+                    <div class="p-4">
+                        <img src="img\kaos wanita.png" alt="Blouse wanita lengan panjang warna pastel"
+                            class="w-full h-48 object-cover rounded-lg mb-4" />
+                        <h3 class="text-xl font-semibold mb-2">Blouse Wanita Formal</h3>
+                        <p class="text-gray-600 mb-4">Tampilan profesional dengan sentuhan feminin yang anggun.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-lg font-bold text-indigo-600">Rp 179.000</span>
+                            <button
+                                class="add-to-cart bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition"
+                                data-id="4" data-name="Blouse Wanita Formal" data-price="179000">
+                                + Keranjang
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Jaket Hoodie Unisex -->
+                <div class="product-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
+                    <div class="p-4">
+                        <img src="img\jaket.png" alt="Jaket hoodie warna abu untuk pria dan wanita"
+                            class="w-full h-48 object-cover rounded-lg mb-4" />
+                        <h3 class="text-xl font-semibold mb-2">Jaket Hoodie Unisex</h3>
+                        <p class="text-gray-600 mb-4">Nyaman dan hangat untuk kegiatan sehari-hari.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-lg font-bold text-indigo-600">Rp 229.000</span>
+                            <button
+                                class="add-to-cart bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition"
+                                data-id="5" data-name="Jaket Hoodie Unisex" data-price="229000">
+                                + Keranjang
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Sepatu & Sandal -->
+            <h3 class="text-2xl font-semibold text-gray-700 mb-4 mt-12 pl-[35px]">Sepatu & Sandal</h3>
+            <div class="product-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Sendal, Sepatu Sneakers, Heels -->
                 <div class="product-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
                     <div class="p-4">
                         <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/da56e742-268e-417a-8dbd-4eeaa0dbe29a.png"
                             alt="Sendal kulit pria premium warna hitam dan coklat dengan desain modern"
                             class="w-full h-48 object-cover rounded-lg mb-4" />
-                        <h3 class="text-xl font-semibold mb-2">Sandal Kulit Elegan</h3>
-                        <p class="text-gray-600 mb-4">Sandal kulit premium dengan desain yang nyaman dan stylish.</p>
+                        <h3 class="text-xl font-semibold mb-2">Sendal Kulit Elegan</h3>
+                        <p class="text-gray-600 mb-4">Sendal kulit premium dengan desain yang nyaman dan stylish.
+                        </p>
                         <div class="flex justify-between items-center">
                             <span class="text-lg font-bold text-indigo-600">Rp 250.000</span>
                             <button
                                 class="add-to-cart bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition"
-                                data-id="2" data-name="Sandal Kulit Elegan" data-price="250000">
+                                data-id="2" data-name="Sendal Kulit Elegan" data-price="250000">
                                 + Keranjang
                             </button>
                         </div>
                     </div>
                 </div>
-
+                <!-- Sepatu Heels Wanita -->
+                <div class="product-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
+                    <div class="p-4">
+                        <img src="img\highheels.png" alt="High heels wanita warna nude"
+                            class="w-full h-48 object-cover rounded-lg mb-4" />
+                        <h3 class="text-xl font-semibold mb-2">Sepatu Heels Wanita</h3>
+                        <p class="text-gray-600 mb-4">Tampil anggun dan percaya diri di setiap acara.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-lg font-bold text-indigo-600">Rp 279.000</span>
+                            <button
+                                class="add-to-cart bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition"
+                                data-id="7" data-name="Sepatu Heels Wanita" data-price="279000">
+                                + Keranjang
+                            </button>
+                        </div>
+                    </div>
+                </div>
                 <!-- Sepatu -->
                 <div class="product-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
                     <div class="p-4">
@@ -167,9 +221,64 @@
                     </div>
                 </div>
             </div>
+            <!-- Aksesori -->
+            <h3 class="text-2xl font-semibold text-gray-700 mb-4 mt-12 pl-[35px]">Aksesori</h3>
+            <div class="product-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Topi Pantai Wanita -->
+                <div class="product-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
+                    <div class="p-4">
+                        <img src="img\topi.png" alt="Topi pantai wanita lebar dan elegan"
+                            class="w-full h-48 object-cover rounded-lg mb-4" />
+                        <h3 class="text-xl font-semibold mb-2">Topi Pantai Wanita</h3>
+                        <p class="text-gray-600 mb-4">Lindungi diri dari sinar matahari dengan topi lebar bergaya
+                            elegan.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-lg font-bold text-indigo-600">Rp 89.000</span>
+                            <button
+                                class="add-to-cart bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition"
+                                data-id="9" data-name="Topi Pantai Wanita" data-price="89000">
+                                + Keranjang
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Jam Tangan Pria Kulit -->
+                <div class="product-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
+                    <div class="p-4">
+                        <img src="img\jam tangan pria.png" alt="Jam tangan kulit pria klasik"
+                            class="w-full h-48 object-cover rounded-lg mb-4" />
+                        <h3 class="text-xl font-semibold mb-2">Jam Tangan Pria Kulit</h3>
+                        <p class="text-gray-600 mb-4">Tampil maskulin dan berkelas dengan jam tangan kulit asli.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-lg font-bold text-indigo-600">Rp 349.000</span>
+                            <button
+                                class="add-to-cart bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition"
+                                data-id="10" data-name="Jam Tangan Pria Kulit" data-price="349000">
+                                + Keranjang
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Jam Tangan Wanita Minimalis -->
+                <div class="product-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
+                    <div class="p-4">
+                        <img src="img\jam wanita.png" alt="Jam tangan wanita elegan"
+                            class="w-full h-48 object-cover rounded-lg mb-4" />
+                        <h3 class="text-xl font-semibold mb-2">Jam Tangan Wanita Minimalis</h3>
+                        <p class="text-gray-600 mb-4">Desain simple dan elegan untuk gaya modernmu.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-lg font-bold text-indigo-600">Rp 299.000</span>
+                            <button
+                                class="add-to-cart bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition"
+                                data-id="11" data-name="Jam Tangan Wanita Minimalis" data-price="299000">
+                                + Keranjang
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
-
     <!-- About Section -->
     <section id="about" class="py-16 bg-gray-100">
         <div class="container mx-auto px-4">
@@ -221,7 +330,7 @@
                     <button id="checkout-btn"
                         class="w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
                         disabled>
-                        Proses Checkout (Demo)
+                        Checkout
                     </button>
                 </div>
             </div>
@@ -403,5 +512,3 @@
 </body>
 
 </html>
-
-<!-- trigger build -->
